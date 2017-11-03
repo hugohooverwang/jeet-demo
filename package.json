@@ -1,0 +1,22 @@
+{
+  "name": "jeet-demo",
+  "version": "1.0.0",
+  "description": "A demo showing how the Jeet grid works.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-imagemin": "^3.4.0",
+    "gulp-scss": "^1.4.0",
+    "gulp-watch": "^4.3.11",
+    "jeet": "^7.2.0"
+  }
+}
