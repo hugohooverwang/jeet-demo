@@ -6,39 +6,55 @@ var gulp = require('gulp'),
     bs = require('browser-sync'),
     del = require('del');
 
-gulp.task('clean', function() {
-  return del(['dist']);
-});
 
-gulp.task('html', function() {
+function clean() {
+  return del(['dist']);
+}
+
+
+function html() {
   return gulp.src('src/index.html')
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('dist/'));
-});
+}
 
-gulp.task('image', function() {
+
+function image() {
   return gulp.src('src/img/*.jpg')
     .pipe(imgmin())
     .pipe(gulp.dest('dist/assets/img/'));
-});
+}
 
-gulp.task('styles', function () {
+
+function styles() {
   return gulp.src('src/styles/style.scss')
     .pipe(scss())
     .pipe(gulp.dest('dist/assets/css/'));
-});
+}
 
-gulp.task('serve', function() {
+
+function serve() {
     bs.init({
         server: ['dist']
     });
-});
+}
 
-gulp.task('watch', function() {
+
+function watch() {
   gulp.watch('src/**/*.html', ['html']);
   gulp.watch('src/styles/*.scss', ['styles']);
-});
+}
 
-gulp.task('build', ['image', 'html', 'styles']);
 
-gulp.task('default', ['build', 'serve', 'watch']);
+var build = gulp.series(clean, styles);
+
+var hugo = gulp.series(clean, styles, serve, watch);
+
+
+exports.clean = clean;
+exports.html = html;
+exports.image = image;
+exports.styles = styles;
+exports.serve = serve;
+exports.watch = watch;
+exports.default = hugo;
